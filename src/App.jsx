@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Background from './components/Background';
 import Hero from './components/Hero';
 import About from './components/About';
+import Skills from './components/Skills';
 
 function App() {
   const [showHome, setShowHome] = useState(false);
@@ -35,8 +36,7 @@ function App() {
         </section>
 
         <section id="skills" className="min-h-screen flex items-center justify-center border-t border-white/5 relative">
-            <div className="absolute right-0 bottom-0 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px] -z-10"></div>
-            <h2 className="text-4xl font-bold text-gray-300">Skills Section Loading...</h2>
+            <Skills></Skills>
         </section>
 
         <section id="projects" className="min-h-screen flex items-center justify-center bg-slate-900/40 backdrop-blur-sm border-t border-white/5">
