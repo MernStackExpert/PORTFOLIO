@@ -45,12 +45,10 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/mdnirobsarkar/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#0077b5] hover:bg-slate-800 p-2 rounded-full transition-all">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-[#1877F2] hover:bg-slate-800 p-2 rounded-full transition-all">
+            <a href="https://www.facebook.com/MernStackExpert" className="text-slate-400 hover:text-[#1877F2] hover:bg-slate-800 p-2 rounded-full transition-all">
               <Facebook size={20} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-sky-500 hover:bg-slate-800 p-2 rounded-full transition-all">
-              <Twitter size={20} />
-            </a>
+           
           </div>
         </div>
 
