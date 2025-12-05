@@ -16,7 +16,7 @@ import { TbApi, TbBrandVscode } from 'react-icons/tb';
 const Skills = () => {
 
   useEffect(() => {
-    AOS.init();
+    AOS.init({ duration: 1200, once: true, easing: "ease-in-out" });
   }, []);
 
   const skillCategories = [
@@ -84,25 +84,15 @@ const Skills = () => {
     "Time Management", "Problem Solving", "Teamwork", "Fast Learner", "Communication"
   ];
 
-  const allTechnicalSkills = skillCategories.reduce((acc, category) => {
-    return [...acc, ...category.skills];
-  }, []);
+  const allTechnicalSkills = skillCategories.reduce((acc, category) => [...acc, ...category.skills], []);
 
   return (
     <section id="skills" className="py-24 relative z-10 overflow-hidden">
 
-      {/* Infinite scroll animation same as before — keep it 100% unchanged */}
       <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-infinite-scroll {
-          animation: scroll 60s linear infinite;
-        }
-        .animate-infinite-scroll:hover {
-          animation-play-state: paused;
-        }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-infinite-scroll { animation: scroll 60s linear infinite; }
+        .animate-infinite-scroll:hover { animation-play-state: paused; }
       `}</style>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,33 +104,33 @@ const Skills = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
           <p className="text-slate-400 mt-4 max-w-2xl mx-auto text-lg">
-             A showcase of my technical expertise and the tools I use to bring ideas to life.
+            A showcase of my technical expertise and the tools I use.
           </p>
         </div>
 
-        {/* Infinite Slider */}
+        {/* Infinite Scroll */}
         <div className="relative w-full overflow-hidden py-10 mb-20" data-aos="zoom-in-up">
-          <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none"></div>
+          <div className="absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none"></div>
 
-          <div className="flex w-max animate-infinite-scroll">
+          <div className="flex w-max min-w-full animate-infinite-scroll">
             {[...allTechnicalSkills, ...allTechnicalSkills].map((skill, index) => (
-              <div key={index} className="flex items-center gap-3 mx-6 px-6 py-3 bg-slate-800/40 border border-slate-700/50 rounded-full backdrop-blur-md hover:border-cyan-400/50 hover:bg-slate-800 transition-all cursor-pointer group">
+              <div key={index} className="flex items-center gap-3 mx-4 px-4 py-3 bg-slate-800/40 border border-slate-700/50 rounded-full backdrop-blur-md hover:border-cyan-400/50 hover:bg-slate-800 transition-all cursor-pointer min-w-[180px] justify-center">
                 <span className="text-2xl">{skill.icon}</span>
-                <span className="text-slate-300 font-semibold group-hover:text-white">{skill.name}</span>
+                <span className="text-slate-300 font-semibold text-center truncate">{skill.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Skill Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {skillCategories.map((category, index) => (
             <div
               key={index}
               data-aos="fade-up"
-              data-aos-delay={index * 150}
-              className="bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-500 group hover:-translate-y-2"
+              data-aos-delay={index * 100}
+              className="bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 hover:border-cyan-400/50 hover:shadow-lg transition-all duration-500 group hover:-translate-y-1"
             >
               <div className="flex items-center gap-3 mb-6 border-b border-slate-700/50 pb-4">
                 <div className="p-3 bg-slate-800 rounded-lg text-white group-hover:text-cyan-400 group-hover:scale-110 transition duration-300">
@@ -149,15 +139,11 @@ const Skills = () => {
                 <h3 className="text-xl font-bold text-slate-200">{category.title}</h3>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                 {category.skills.map((skill, idx) => (
-                  <div key={idx} className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 cursor-default group/skill">
-                    <span className="text-lg group-hover/skill:scale-125 transition-transform duration-300">
-                      {skill.icon}
-                    </span>
-                    <span className="text-slate-300 text-sm font-medium group-hover/skill:text-cyan-400 transition-colors">
-                      {skill.name}
-                    </span>
+                  <div key={idx} className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 cursor-default min-w-[120px] justify-center">
+                    <span className="text-lg">{skill.icon}</span>
+                    <span className="text-slate-300 text-sm font-medium text-center">{skill.name}</span>
                   </div>
                 ))}
               </div>
@@ -178,8 +164,8 @@ const Skills = () => {
               <div
                 key={index}
                 data-aos="zoom-in-up"
-                data-aos-delay={index * 120}
-                className="relative px-6 py-3 bg-slate-800/30 border border-slate-600/50 rounded-full text-slate-300 font-medium hover:text-white hover:border-purple-500 hover:bg-purple-500/10 hover:scale-105 transition-all duration-300 cursor-default shadow-lg shadow-transparent hover:shadow-purple-500/20"
+                data-aos-delay={index * 100}
+                className="px-6 py-3 bg-slate-800/30 border border-slate-600/50 rounded-full text-slate-300 font-medium hover:text-white hover:border-purple-500 hover:bg-purple-500/10 hover:scale-105 transition-all duration-300 cursor-default shadow-lg"
               >
                 {skill}
               </div>

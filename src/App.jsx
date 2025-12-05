@@ -1,4 +1,3 @@
-// App.js
 import { useState } from "react";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
@@ -14,25 +13,28 @@ function App() {
   const [showHome, setShowHome] = useState(false);
 
   return (
-    <div className="min-h-screen text-white selection:bg-cyan-400 selection:text-black relative">
-      {/* 1. Background Animation */}
+    <div className="min-h-screen text-white selection:bg-cyan-400 selection:text-black relative overflow-x-hidden">
+      
+      {/* Background Animation */}
       {showHome && <Background />}
 
-      {/* 2. Loader */}
+      {/* Loader */}
       {!showHome && <Loader onComplete={() => setShowHome(true)} />}
 
-      <header>
-        <Navbar></Navbar>
-        <Hero></Hero>
+      <header >
+        <Navbar />
+        <Hero />
       </header>
+
       <main>
-        <About></About>
-        <Skills></Skills>
-        <Projects></Projects>
-        <Contact></Contact>
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
       </main>
+
       <footer>
-        <Footer></Footer>
+        <Footer />
       </footer>
     </div>
   );

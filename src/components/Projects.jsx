@@ -8,24 +8,19 @@ const Projects = () => {
 
   React.useEffect(() => {
     AOS.init({
-      duration: 1200,
+      duration: 1000,
       easing: "ease-in-out",
+      once: true,
     });
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            AOS.refreshHard();
-          }
-        });
+        entries.forEach((entry) => entry.isIntersecting && AOS.refreshHard());
       },
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -38,18 +33,10 @@ const Projects = () => {
       image:
         "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=1470&auto=format&fit=crop",
       description:
-        "A modern toy marketplace with a user-friendly interface. Users can browse toys, search, filter, and interact with dynamic components using Swiper JS.",
-      techStack: [
-        "React",
-        "Firebase",
-        "Tailwind",
-        "DaisyUI",
-        "Swiper JS",
-        "AOS",
-      ],
+        "A modern toy marketplace with interactive UI, filters, search, and Swiper JS.",
+      techStack: ["React", "Firebase", "Tailwind", "DaisyUI", "Swiper JS", "AOS"],
       liveLink: "https://toytopiaasigement.netlify.app/",
       githubClient: "https://github.com/MernStackExpert/ToyTopia.git",
-      githubServer: null,
     },
     {
       id: 2,
@@ -58,7 +45,7 @@ const Projects = () => {
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop",
       description:
-        "A complete personal finance tracker with dashboard, charts, filters, and smooth animations.",
+        "A complete finance tracker with dashboard, charts, filters & animations.",
       techStack: [
         "Next.js",
         "MongoDB",
@@ -80,115 +67,106 @@ const Projects = () => {
       image:
         "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1482&auto=format&fit=crop",
       description:
-        "A responsive online library to browse, search and manage personal book collection with authentication.",
-      techStack: [
-        "Next.js",
-        "MongoDB",
-        "Express",
-        "Node.js",
-        "Firebase",
-        "Tailwind",
-      ],
+        "A Next.js-based online library with search, authentication & responsive UI.",
+      techStack: ["Next.js", "MongoDB", "Express", "Node.js", "Firebase", "Tailwind"],
       liveLink: "https://bookhub-plum.vercel.app/",
       githubClient: "https://github.com/MernStackExpert/BookHub-Client",
-      githubServer:
-        "https://github.com/MernStackExpert/BookHub-Server.git",
+      githubServer: "https://github.com/MernStackExpert/BookHub-Server.git",
     },
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 relative z-10">
+    <section id="projects" ref={sectionRef} className="py-20 relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Section Header */}
         <div data-aos="zoom-in" className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             Featured <span className="text-cyan-400">Projects</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
           <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-            A selection of my best work using modern web technologies.
+            A selection of my best work using modern technologies.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={project.id}
               data-aos={index % 2 === 0 ? "fade-up-right" : "fade-up-left"}
-              className="group relative h-[450px] w-full rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl bg-slate-900"
+              className="group relative rounded-2xl overflow-hidden border border-slate-700/40 bg-slate-900 
+                         shadow-lg hover:shadow-cyan-900/20 transition-all duration-500"
             >
-              <div className="absolute inset-0">
+              {/* Image */}
+              <div className="w-full h-64 sm:h-60 md:h-56 lg:h-60 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:blur-[2px]"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"></div>
+              {/* Content */}
+              <div className="p-6">
+                <span className="px-3 py-1 text-xs font-semibold text-cyan-300 bg-cyan-900/20 border border-cyan-500/20 rounded-full">
+                  {project.category}
+                </span>
 
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <div className="mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="px-3 py-1 text-xs font-semibold text-cyan-300 bg-cyan-900/30 border border-cyan-500/30 rounded-full backdrop-blur-sm">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                <h3 className="text-xl font-semibold text-white mt-3">
                   {project.title}
                 </h3>
 
-                <div className="h-0 overflow-hidden group-hover:h-auto transition-all duration-500 opacity-0 group-hover:opacity-100">
-                  <p className="text-slate-300 text-sm leading-relaxed mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                    {project.description}
-                  </p>
+                <p className="text-slate-300 text-sm mt-2 leading-relaxed">
+                  {project.description}
+                </p>
 
-                  <div className="flex flex-wrap gap-2 mb-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                    {project.techStack.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs text-slate-400 bg-slate-800/80 px-2 py-1 rounded border border-slate-700/50"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      className="flex items-center gap-1 text-white text-sm font-medium hover:text-cyan-400 transition-colors"
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {project.techStack.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs text-slate-400 bg-slate-800/50 px-2 py-1 rounded border border-slate-700/50"
                     >
-                      Live{" "}
-                      <ArrowUpRight
-                        size={16}
-                        className="transition-transform"
-                      />
-                    </a>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
+                {/* Buttons */}
+                <div className="flex gap-4 mt-5">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    className="flex items-center gap-1 text-white text-sm font-medium hover:text-cyan-400"
+                  >
+                    Live <ArrowUpRight size={16} />
+                  </a>
+
+                  <a
+                    href={project.githubClient}
+                    target="_blank"
+                    className="flex items-center gap-1 text-slate-400 text-sm hover:text-white"
+                  >
+                    <Github size={16} /> Client
+                  </a>
+
+                  {project.githubServer && (
                     <a
-                      href={project.githubClient}
+                      href={project.githubServer}
                       target="_blank"
-                      className="flex items-center gap-1 text-slate-400 text-sm font-medium hover:text-white transition-colors"
+                      className="flex items-center gap-1 text-slate-400 text-sm hover:text-white"
                     >
-                      <Github size={16} /> Client
+                      <Github size={16} /> Server
                     </a>
-
-                    {project.githubServer && (
-                      <a
-                        href={project.githubServer}
-                        target="_blank"
-                        className="flex items-center gap-1 text-slate-400 text-sm font-medium hover:text-white transition-colors"
-                      >
-                        <Github size={16} /> Server
-                      </a>
-                    )}
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
