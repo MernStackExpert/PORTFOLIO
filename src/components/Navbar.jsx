@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2 } from 'lucide-react'; // lucide-react আইকন ব্যবহার করা হয়েছে
+import { Menu, X, Code2 } from 'lucide-react';
+import { Link } from 'react-scroll';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // স্ক্রল করলে ন্যাভবারের ব্যাকগ্রাউন্ড একটু গাড় হবে
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -19,11 +19,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', to: 'home' },
+    { name: 'About', to: 'about' },
+    { name: 'Skills', to: 'skills' },
+    { name: 'Projects', to: 'projects' },
+    { name: 'Contact', to: 'contact' },
   ];
 
   return (
@@ -37,32 +37,32 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            <Code2 className="text-cyan-400 w-8 h-8" /> {/* আইকন লোগো হিসেবে */}
+            <Code2 className="text-cyan-400 w-8 h-8" />
             <h1 className="text-2xl font-bold text-white tracking-wider">
               NIROB<span className="text-cyan-400">.DEV</span>
             </h1>
           </div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  className="relative text-slate-300 hover:text-cyan-400 px-1 py-2 text-sm font-medium transition-colors duration-300 group"
+                  to={link.to}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className="relative text-slate-300 hover:text-cyan-400 px-1 py-2 text-sm font-medium transition-colors duration-300 group cursor-pointer"
                 >
                   {link.name}
-                  {/* হোভার এফেক্ট (Underline Animation) */}
                   <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -74,7 +74,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden absolute w-full bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 transition-all duration-300 ease-in-out ${
           isOpen ? 'top-16 opacity-100' : '-top-[400px] opacity-0'
@@ -82,14 +81,18 @@ const Navbar = () => {
       >
         <div className="px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.to}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
               onClick={() => setIsOpen(false)}
-              className="block text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 px-3 py-3 rounded-md text-base font-medium text-center transition duration-300"
+              className="block text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 px-3 py-3 rounded-md text-base font-medium text-center transition duration-300 cursor-pointer"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Download, Github, Linkedin, Facebook, Twitter, Mail } from 'lucide-reac
 import img from '/bg-remove-nirob.png'; 
 
 const Hero = () => {
-  const resumeLink = "#"; 
+  const resumeLink = "https://drive.google.com/file/d/17kTrQMIeicG46jATs0T7bKgf0lvzmi-l/view?usp=sharing"; 
 
 
   const [text, setText] = useState('');
@@ -100,12 +100,10 @@ const Hero = () => {
               <a href="https://www.linkedin.com/in/mdnirobsarkar/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
                 <Linkedin size={28} />
               </a>
-              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
+              <a href="https://www.facebook.com/MernStackExpert" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
                 <Facebook size={28} />
               </a>
-              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
-                <Twitter size={28} />
-              </a>
+         
             </div>
           </div>
 
