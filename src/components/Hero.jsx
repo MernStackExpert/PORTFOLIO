@@ -66,7 +66,7 @@ const Hero = () => {
             <div>
               <h3 className="text-lg sm:text-xl text-cyan-400 font-medium mb-1">Hi there, I am</h3>
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 tracking-tight leading-tight">
-                MD NIROB <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ISLAM</span>
+                MD NIROB <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">SARKAR</span>
               </h1>
 
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-300 min-h-[35px]">

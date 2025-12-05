@@ -58,7 +58,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm text-center md:text-left">
-            © {new Date().getFullYear()} <span className="text-cyan-400">MD NIROB ISLAM</span>. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-cyan-400">MD NIROB SARKAR</span>. All rights reserved.
           </p>
           
           <button 

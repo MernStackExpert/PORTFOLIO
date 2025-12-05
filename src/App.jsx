@@ -26,7 +26,7 @@ function App() {
         <Hero />
       </header>
 
-      <main>
+      <main className="max-w-7xl mx-auto">
         <About />
         <Skills />
         <Projects />
