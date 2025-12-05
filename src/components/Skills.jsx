@@ -78,11 +78,30 @@ const Skills = () => {
     "Time Management", "Problem Solving", "Teamwork", "Fast Learner", "Communication"
   ];
 
+  const allTechnicalSkills = skillCategories.reduce((acc, category) => {
+    return [...acc, ...category.skills];
+  }, []);
+
   return (
     <section id="skills" className="py-24 relative z-10 overflow-hidden">
+      
+      {/* CSS Animation for Infinite Scroll */}
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-infinite-scroll {
+          animation: scroll 60s linear infinite;
+        }
+        .animate-infinite-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Section with Animation */}
+        {/* Header Section */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Technical <span className="text-cyan-400">Skills</span>
@@ -93,14 +112,30 @@ const Skills = () => {
           </p>
         </div>
 
+                {/* ========== INFINITE SKILL SLIDER ========== */}
+        <div className="relative w-full overflow-hidden py-10 mb-20">
+           {/* Fade Effect on Edges */}
+           <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none"></div>
+           <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none"></div>
+           
+           <div className="flex w-max animate-infinite-scroll hover:pause">
+           {/* double time  */}
+              {[...allTechnicalSkills, ...allTechnicalSkills].map((skill, index) => (
+                <div key={index} className="flex items-center gap-3 mx-6 px-6 py-3 bg-slate-800/40 border border-slate-700/50 rounded-full backdrop-blur-md hover:border-cyan-400/50 hover:bg-slate-800 transition-all cursor-pointer group">
+                  <span className="text-2xl">{skill.icon}</span>
+                  <span className="text-slate-300 font-semibold group-hover:text-white">{skill.name}</span>
+                </div>
+              ))}
+           </div>
+        </div>
+
         {/* Technical Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
           {skillCategories.map((category, index) => (
             <div 
               key={index} 
               className="bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-500 group hover:-translate-y-2"
             >
-              {/* Category Header */}
               <div className="flex items-center gap-3 mb-6 border-b border-slate-700/50 pb-4">
                 <div className="p-3 bg-slate-800 rounded-lg text-white group-hover:text-cyan-400 group-hover:scale-110 transition duration-300">
                   {category.icon}
@@ -110,7 +145,6 @@ const Skills = () => {
                 </h3>
               </div>
 
-              {/* Skills List */}
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, idx) => (
                   <div 
@@ -131,7 +165,7 @@ const Skills = () => {
         </div>
 
         {/* Soft Skills Section */}
-        <div className="mt-20">
+        <div>
             <div className="text-center mb-10">
                 <h3 className="text-3xl font-bold text-white flex items-center justify-center gap-3">
                    <Brain className="text-purple-400" /> Soft Skills
