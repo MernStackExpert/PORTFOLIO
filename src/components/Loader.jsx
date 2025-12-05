@@ -42,8 +42,8 @@ const Loader = ({ onComplete }) => {
   };
 
   return (
-    <div className="loader-container fixed inset-0 z-[500] bg-black flex flex-col items-center justify-center overflow-hidden px-4">
-      <div className="flash-overlay fixed inset-0 bg-cyan-100 z-[60] opacity-0 pointer-events-none"></div>
+    <div className="loader-container fixed inset-0 z-900 bg-black flex flex-col items-center justify-center overflow-hidden px-4">
+      <div className="flash-overlay fixed inset-0 bg-cyan-100 z-20 opacity-0 pointer-events-none"></div>
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
       
       <div className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 flex items-center justify-center">
