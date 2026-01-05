@@ -53,84 +53,88 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative z-10 min-h-[90vh] flex items-center pt-20 md:pt-0 overflow-hidden"
+      className="relative z-10 min-h-screen flex items-center pt-24 md:pt-0 overflow-hidden"
       data-aos="fade-down"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
 
+          {/* LEFT CONTENT */}
           <div 
-            className="w-full md:w-1/2 space-y-6 sm:space-y-8 text-center md:text-left"
+            className="w-full md:w-1/2 space-y-6 text-center md:text-left"
             data-aos="fade-right"
           >
-            <div>
-              <h3 className="text-lg sm:text-xl text-cyan-400 font-medium mb-1">Hi there, I am</h3>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 tracking-tight leading-tight">
+            <div className="space-y-2">
+              <h3 className="text-lg text-cyan-400 font-medium">Hi there, I am</h3>
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
                 MD NIROB <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">SARKAR</span>
               </h1>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-300 min-h-[35px]">
+              <h2 className="text-xl sm:text-2xl font-semibold text-slate-300 min-h-[40px]">
                 I am a <span className="text-cyan-400">{text}</span>
-                <span className="animate-pulse text-cyan-400">|</span>
+                <span className="animate-pulse text-cyan-400 ml-1">|</span>
               </h2>
             </div>
 
-            <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-md mx-auto md:mx-0 leading-relaxed">
-              I craft interactive, scalable, and responsive web applications. Specialized in building modern digital experiences using the MERN stack and 3D technologies.
+            <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed">
+              I craft interactive, scalable, and responsive web applications. Specialized in building modern digital experiences using the MERN stack.
             </p>
 
+            {/* BUTTONS */}
             <div 
-              className="flex flex-wrap items-center justify-center md:justify-start gap-4"
+              className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2"
               data-aos="fade-up"
             >
               <a
                 href={resumeLink}
-                download="Nirob_Islam_Resume.pdf"
-                className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 transition-all duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 transform hover:-translate-y-1"
               >
-                <Download size={20} />
-                Download CV
+                <Download size={18} /> Download CV
               </a>
 
               <a
                 href="#contact"
-                className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-transparent border-2 border-cyan-400 text-cyan-400 rounded-full font-medium hover:bg-cyan-400/10 transition-all duration-300"
+                className="flex items-center gap-2 px-6 py-3 border-2 border-cyan-400 text-cyan-400 rounded-full font-bold hover:bg-cyan-400/10 transition-all duration-300 transform hover:-translate-y-1"
               >
-                <Mail size={20} />
-                Contact Me
+                <Mail size={18} /> Contact Me
               </a>
             </div>
 
+            {/* SOCIAL LINKS */}
             <div 
-              className="flex items-center justify-center md:justify-start gap-5 sm:gap-6 pt-3"
+              className="flex items-center justify-center md:justify-start gap-5 pt-4"
               data-aos="fade-up"
             >
-              <a href="https://github.com/MernStackExpert" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
-                <Github size={26} />
-              </a>
-              <a href="https://www.linkedin.com/in/mdnirobsarkar/" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
-                <Linkedin size={26} />
-              </a>
-              <a href="https://www.facebook.com/MernStackExpert" className="text-slate-400 hover:text-cyan-400 transition duration-300 hover:scale-110">
-                <Facebook size={26} />
-              </a>
+              {[
+                { Icon: Github, href: "https://github.com/MernStackExpert" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/mdnirobsarkar/" },
+                { Icon: Facebook, href: "https://www.facebook.com/MernStackExpert" }
+              ].map(({Icon, href}, idx) => (
+                <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-all duration-300 hover:scale-110 p-2 bg-slate-900/50 rounded-lg border border-slate-800">
+                  <Icon size={22} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* RIGHT SIDE IMAGE (Fully Responsive) */}
+          {/* RIGHT SIDE IMAGE (Fixed for Tablet) */}
           <div 
             className="w-full md:w-1/2 flex justify-center md:justify-end"
             data-aos="zoom-in"
           >
-            <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px]">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 rounded-full blur-2xl animate-pulse"></div>
 
-              <div className="relative w-full h-full rounded-full p-2 border-2 border-cyan-400/50 bg-slate-900/50 backdrop-blur-sm overflow-hidden">
-                <img 
-                  src={img}
-                  alt="MD NIROB ISLAM"
-                  className="w-full h-full object-cover rounded-full hover:scale-105 transition duration-500"
-                />
+              <div className="relative w-full h-full rounded-full p-1.5 bg-gradient-to-br from-cyan-400 to-blue-600 overflow-hidden shadow-2xl">
+                <div className="w-full h-full rounded-full bg-slate-950 overflow-hidden">
+                  <img 
+                    src={img}
+                    alt="MD NIROB"
+                    className="w-full h-full object-cover hover:scale-105 transition duration-700"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -138,10 +142,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-        <a href="#about" className="text-slate-500 hover:text-cyan-400 transition">
-          <span className="text-sm">Scroll Down</span>
-        </a>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 hidden lg:flex">
+         <span className="text-slate-500 text-xs tracking-widest uppercase">Scroll Down</span>
+         <div className="w-px h-12 bg-gradient-to-b from-cyan-400 to-transparent"></div>
       </div>
     </section>
   );

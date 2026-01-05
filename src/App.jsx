@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Loader from "./components/Loader";
-import Navbar from "./components/Navbar";
 import Background from "./components/Background";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -22,7 +21,6 @@ function App() {
       {!showHome && <Loader onComplete={() => setShowHome(true)} />}
 
       <header >
-        <Navbar />
         <Hero />
       </header>
 
@@ -32,10 +30,6 @@ function App() {
         <Projects />
         <Contact />
       </main>
-
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 }

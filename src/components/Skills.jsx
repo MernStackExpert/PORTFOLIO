@@ -79,7 +79,6 @@ const Skills = () => {
       ]
     }
   ];
-
   const softSkills = [
     "Time Management", "Problem Solving", "Teamwork", "Fast Learner", "Communication"
   ];

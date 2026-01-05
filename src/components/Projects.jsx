@@ -2,6 +2,8 @@ import React from "react";
 import { Github, ArrowUpRight } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router";
+import projectsData from "../JSON/projectsData";
 
 const Projects = () => {
   const sectionRef = React.useRef(null);
@@ -25,61 +27,9 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "ToyTopia - Toy Marketplace",
-      category: "Frontend (React + Firebase)",
-      image:
-        "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=1470&auto=format&fit=crop",
-      description:
-        "A modern toy marketplace with interactive UI, filters, search, and Swiper JS.",
-      techStack: ["React", "Firebase", "Tailwind", "DaisyUI", "Swiper JS", "AOS"],
-      liveLink: "https://toytopiaasigement.netlify.app/",
-      githubClient: "https://github.com/MernStackExpert/ToyTopia.git",
-    },
-    {
-      id: 2,
-      title: "FinEase - Finance Manager",
-      category: "Full Stack (MERN)",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop",
-      description:
-        "A complete finance tracker with dashboard, charts, filters & animations.",
-      techStack: [
-        "Next.js",
-        "MongoDB",
-        "Express",
-        "Node.js",
-        "Recharts",
-        "Framer Motion",
-      ],
-      liveLink: "https://fineaseasigement.netlify.app/",
-      githubClient:
-        "https://github.com/MernStackExpert/Asigement-10-Client-Side.git",
-      githubServer:
-        "https://github.com/MernStackExpert/Asigement-10-Server-Side.git",
-    },
-    {
-      id: 3,
-      title: "BookHub - Online Library",
-      category: "Full Stack (MENN)",
-      image:
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1482&auto=format&fit=crop",
-      description:
-        "A Next.js-based online library with search, authentication & responsive UI.",
-      techStack: ["Next.js", "MongoDB", "Express", "Node.js", "Firebase", "Tailwind"],
-      liveLink: "https://bookhub-plum.vercel.app/",
-      githubClient: "https://github.com/MernStackExpert/BookHub-Client",
-      githubServer: "https://github.com/MernStackExpert/BookHub-Server.git",
-    },
-  ];
-
   return (
     <section id="projects" ref={sectionRef} className="py-20 relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section Header */}
         <div data-aos="zoom-in" className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             Featured <span className="text-cyan-400">Projects</span>
@@ -90,16 +40,13 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projectsData.map((project, index) => (
             <div
               key={project.id}
               data-aos={index % 2 === 0 ? "fade-up-right" : "fade-up-left"}
-              className="group relative rounded-2xl overflow-hidden border border-slate-700/40 bg-slate-900 
-                         shadow-lg hover:shadow-cyan-900/20 transition-all duration-500"
+              className="group relative rounded-2xl overflow-hidden border border-slate-700/40 bg-slate-900 shadow-lg hover:shadow-cyan-900/20 transition-all duration-500"
             >
-              {/* Image */}
               <div className="w-full h-64 sm:h-60 md:h-56 lg:h-60 overflow-hidden">
                 <img
                   src={project.image}
@@ -108,7 +55,6 @@ const Projects = () => {
                 />
               </div>
 
-              {/* Content */}
               <div className="p-6">
                 <span className="px-3 py-1 text-xs font-semibold text-cyan-300 bg-cyan-900/20 border border-cyan-500/20 rounded-full">
                   {project.category}
@@ -122,7 +68,6 @@ const Projects = () => {
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mt-4">
                   {project.techStack.map((tech, idx) => (
                     <span
@@ -134,39 +79,35 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* Buttons */}
-                <div className="flex gap-4 mt-5">
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    className="flex items-center gap-1 text-white text-sm font-medium hover:text-cyan-400"
-                  >
-                    Live <ArrowUpRight size={16} />
-                  </a>
-
-                  <a
-                    href={project.githubClient}
-                    target="_blank"
-                    className="flex items-center gap-1 text-slate-400 text-sm hover:text-white"
-                  >
-                    <Github size={16} /> Client
-                  </a>
-
-                  {project.githubServer && (
+                <div className="flex items-center justify-between mt-5">
+                  <div className="flex gap-4">
                     <a
-                      href={project.githubServer}
+                      href={project.liveLink}
                       target="_blank"
-                      className="flex items-center gap-1 text-slate-400 text-sm hover:text-white"
+                      className="flex items-center gap-1 text-white text-sm font-medium hover:text-cyan-400 transition-colors"
                     >
-                      <Github size={16} /> Server
+                      Live <ArrowUpRight size={16} />
                     </a>
-                  )}
+                    <a
+                      href={project.githubClient}
+                      target="_blank"
+                      className="flex items-center gap-1 text-slate-400 text-sm hover:text-white transition-colors"
+                    >
+                      <Github size={16} /> Client
+                    </a>
+                  </div>
+
+                  <Link
+                    to={`/proojectDetailes/${project.id}`}
+                    className="px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-bold rounded-lg border border-cyan-500/20 transition-all duration-300 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-2 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 cursor-pointer"
+                  >
+                    Details
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
